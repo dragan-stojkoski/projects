@@ -1,0 +1,68 @@
+
+{
+    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "variables": {
+        "policyName": "allowed-locations-for-resource-groups",
+        "policyDisplayName": "Allowed Locations for Resource Groups",
+        "policyDescription": "This policy restrict the locations you can create Resource Groups in."
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Authorization/policyDefinitions",
+            "name": "[variables('policyName')]",
+            "apiVersion": "2019-09-01",
+            "properties": {
+                "displayName": "[variables('policyDisplayName')]",
+                "policyType": "Custom",
+                "description": "[variables('policyDescription')]",
+                "metadata": {
+                    "category": "General"
+                },
+                "mode": "All",
+                "parameters": {
+                    "allowedLocations": {
+                        "type": "Array",
+                        "metadata": {
+                            "displayName": "Allowed locations",
+                            "description": "The list of locations that can be specified when deploying resources.",
+                            "strongType": "location",
+                            "defaultValue":[
+          "australiaeast",
+          "australiasoutheast",
+          "southeastasia",
+          "eastasia",
+          "northeurope"
+        ],
+                            "allowedValues": [
+          "australiaeast",
+          "australiasoutheast",
+          "southeastasia",
+          "eastasia",
+          "northeurope"
+        ]
+                        }
+                    }
+                },
+                "policyRule": {
+                    "if": {
+                        "allOf": [
+                            {
+                                "field": "location",
+                                "notIn": "[[parameters('allowedLocations')]" 
+                            },
+                            {
+                                 "field": "type",
+                                 "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+                            }
+                        ]
+                    },
+                    "then": {
+                        "effect": "Deny"
+                    }
+                }
+            }
+        }
+
+    ]
+}
