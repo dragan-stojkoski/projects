@@ -5,8 +5,8 @@
 
     "variables": {
         "policyName": "test-policy",
-        "policyDisplayName": "Enforce naming convention for resource groups",
-        "policyDescription": "This policy enforces a naming pattern for resource groups."
+        "policyDisplayName": "test-policy",
+        "policyDescription": "This policy enforces locations for resource groups."
     },
 
     "resources": [
@@ -31,16 +31,13 @@
         }
       }
     },
-                "mode": "All",
-               
-                "policyRule": {
-                    "if": {
-                        "allOf": [
+        "mode": "All",
+        "policyRule": {
+         "if": 
           {
             "field": "type",
             "equals": "Microsoft.Resources/subscriptions/resourceGroups"
           },
-          {
             "not": {
               "field": "location",
               "in": [
@@ -55,11 +52,11 @@
                       "effect": "Audit"
                              }
           }
-                                ]
+                                
                           }
                           }
-                         }
-        }
+                         
+        
             
     ]
     
