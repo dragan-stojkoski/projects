@@ -13,6 +13,7 @@
                  "parameters": {
       "RGAllowedLocations": {
         "type": "Array",
+          "defaultValue": [ "australiaeast" ],
         "metadata": {
           "description": "The list of locations that resource groups can be created in.",
           "strongType": "location",
