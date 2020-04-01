@@ -1,14 +1,12 @@
-  
+
 {
-"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-
     "variables": {
-        "policyName": "test-policy",
-        "policyDisplayName": "test-policy",
-        "policyDescription": "This policy enforces locations for resource groups."
+        "policyName": "restrict-allowed-locations-policy",
+        "policyDisplayName": "Restrict allowed locations for resources",
+        "policyDescription": "This policy restrict the locations you can specify when deploying resources. Excludes resource groups, Microsoft.AzureActiveDirectory/b2cDirectories, and resources that use the 'global' region."
     },
-
     "resources": [
         {
             "type": "Microsoft.Authorization/policyDefinitions",
@@ -21,44 +19,46 @@
                 "metadata": {
                     "category": "General"
                 },
-                    "parameters": {
-      "listOfAllowedLocations": {
-        "type": "Array",
-        "metadata": {
-          "description": "The list of locations that resource groups can be created in.",
-          "strongType": "location",
-          "displayName": "Allowed locations"
+                "mode": "All",
+                "parameters": {
+                    "allowedLocations": {
+                        "type": "Array",
+                        "metadata": {
+                            "displayName": "Allowed locations",
+                            "description": "The list of locations that can be specified when deploying resources.",
+                            "strongType": "location",
+                            "allowedValues": [
+          "australiaeast",
+          "australiasoutheast",
+          "southeastasia",
+          "eastasia",
+          "northeurope"
+        ]
+                        }
+                    }
+                },
+                "policyRule": {
+                    "if": {
+                        "allOf": [
+                            {
+                                "field": "location",
+                                "notIn": "[[parameters('allowedLocations')]" //Use an additional left bracket here, so the function is not invoked in the ARM template itself
+                            },
+                            {
+                                "field": "location",
+                                "notEquals": "global"
+                            },
+                            {"
+                                 field": "type",
+                                 "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+                            }
+                        ]
+                    },
+                    "then": {
+                        "effect": "Deny"
+                    }
+                }
+            }
         }
-      }
-    },
-        "mode": "All","policyRule": {
-         "if": {
-           "allOf": [
-          {
-            "field": "type",
-            "equals": "Microsoft.Resources/subscriptions/resourceGroups"
-          },
-          {
-            "not": {
-              "field": "location",
-              "in": [
-                "australiaeast",
-                "australiasoutheast",
-                "southeastasia",
-                "eastasia",
-                "northeurope"
-                    ]
-                  },
-                     "then": {
-                      "effect": "Deny"
-                             }
-          }
-                                ]
-                          }
-                          }
-                         }
-        }
-            
     ]
-    
 }
