@@ -65,7 +65,7 @@
         },
         {
             "type": "Microsoft.Authorization/policyAssignments",
-            "name": "allowed-locations-for-rg",
+            "name": "RG Locations",
             "apiVersion": "2018-03-01",
             "dependsOn": [
                 "allowed-locations-for-resource-groups"
