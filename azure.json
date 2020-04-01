@@ -3,9 +3,9 @@
     "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "variables": {
-        "policyName": "restrict-allowed-locations-policy",
-        "policyDisplayName": "Restrict allowed locations for resources",
-        "policyDescription": "This policy restrict the locations you can specify when deploying resources. Excludes resource groups, Microsoft.AzureActiveDirectory/b2cDirectories, and resources that use the 'global' region."
+        "policyName": "allowed-locations-for-resource-groups",
+        "policyDisplayName": "Allowed Locations for Resource Groups",
+        "policyDescription": "This policy restrict the locations you can create Resource Groups in."
     },
     "resources": [
         {
@@ -27,6 +27,13 @@
                             "displayName": "Allowed locations",
                             "description": "The list of locations that can be specified when deploying resources.",
                             "strongType": "location",
+                            "defaultValue":[
+          "australiaeast",
+          "australiasoutheast",
+          "southeastasia",
+          "eastasia",
+          "northeurope"
+        ],
                             "allowedValues": [
           "australiaeast",
           "australiasoutheast",
