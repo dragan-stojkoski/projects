@@ -11,16 +11,19 @@
             "properties": {
                 "policyType": "Custom",
                  "parameters": {
-      "RGAllowedLocations": {
-        "type": "Array",
-          "defaultValue": [ "australiaeast" ],
-        "metadata": {
-          "description": "The list of locations that resource groups can be created in.",
-          "strongType": "location",
-          "displayName": "Allowed locations"
-        }
-      }
-    },
+        "RGAllowedLocations": {
+            "type": "array",
+            "strongType": "location",
+            "defaultValue": [ "australiaeast" ],
+            "allowedValues": [
+              "australiaeast",
+              "australiasoutheast",
+              "southeastasia",
+              "eastasia",
+              "northeurope"
+            ]
+          }
+},
     "policyRule": {
       "if": {
         "allOf": [
