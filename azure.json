@@ -42,7 +42,7 @@
                     ]
                   },
                      "then": {
-                      "effect": "Audit"
+                      "effect": "Deny"
                              }
           }
                                 ]
