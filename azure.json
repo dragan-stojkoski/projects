@@ -4,7 +4,7 @@
     "contentVersion": "1.0.0.0",
 
     "variables": {
-        "policyName": "enforce-naming-for-resource-groups-pd",
+        "policyName": "test-policy",
         "policyDisplayName": "Enforce naming convention for resource groups",
         "policyDescription": "This policy enforces a naming pattern for resource groups."
     },
@@ -32,7 +32,7 @@
           },
           {
             "not": {
-              "field": "Microsoft.Storage/storageAccounts/sku.name",
+              "field": "location",
               "in": [
                 "australiaeast",
                 "australiasoutheast",
