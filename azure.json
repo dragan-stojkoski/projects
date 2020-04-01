@@ -31,13 +31,14 @@
         }
       }
     },
-        "mode": "All",
-        "policyRule": {
-         "if": 
+        "mode": "All","policyRule": {
+         "if": {
+           "allOf": [
           {
             "field": "type",
             "equals": "Microsoft.Resources/subscriptions/resourceGroups"
           },
+          {
             "not": {
               "field": "location",
               "in": [
@@ -49,14 +50,14 @@
                     ]
                   },
                      "then": {
-                      "effect": "Audit"
+                      "effect": "Deny"
                              }
           }
-                                
+                                ]
                           }
                           }
-                         
-        
+                         }
+        }
             
     ]
     
