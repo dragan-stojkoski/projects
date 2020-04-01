@@ -62,6 +62,18 @@
                     }
                 }
             }
+        },
+        {
+            "type": "Microsoft.Authorization/policyAssignments",
+            "name": "location-lock",
+            "apiVersion": "2018-03-01",
+            "dependsOn": [
+                "Allowed Locations for Resource Groups"
+            ],
+            "properties": {
+                "scope": "[subscription().id]",
+                "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions', 'Allowed Locations for Resource Groups')]"
+            }
         }
     ]
 }
