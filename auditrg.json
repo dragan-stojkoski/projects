@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "variables": {
+        "policyName": "audit-resource-location-matches-resource-group-location",
+        "policyDisplayName": "Audit Resource Location Matches Resource Group Location",
+        "policyDescription": "Audit that the resource location matches its resource group location"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Authorization/policyDefinitions",
+            "name": "[variables('policyName')]",
+            "apiVersion": "2019-09-01",
+            "properties": {
+                "displayName": "[variables('policyDisplayName')]",
+                "policyType": "Custom",
+                "description": "[variables('policyDescription')]",
+                "metadata": {
+                    "category": "General"
+                },
+                "mode": "Indexed",
+                
+                "policyRule": {
+      "if": {
+        "field": "location",
+        "notIn": [
+          "[resourcegroup().location]",
+          "global"
+        ]
+      },
+      "then": {
+        "effect": "audit"
+      }
+    }
+            }
+        }
+
+    ]
+}
