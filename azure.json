@@ -19,8 +19,18 @@
                 "policyType": "Custom",
                 "description": "[variables('policyDescription')]",
                 "metadata": {
-                    "category": "Naming convention"
+                    "category": "General"
                 },
+                    "parameters": {
+      "listOfAllowedLocations": {
+        "type": "Array",
+        "metadata": {
+          "description": "The list of locations that resource groups can be created in.",
+          "strongType": "location",
+          "displayName": "Allowed locations"
+        }
+      }
+    },
                 "mode": "All",
                
                 "policyRule": {
@@ -42,7 +52,7 @@
                     ]
                   },
                      "then": {
-                      "effect": "Deny"
+                      "effect": "Audit"
                              }
           }
                                 ]
