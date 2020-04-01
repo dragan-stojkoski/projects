@@ -1,6 +1,6 @@
 
 {
-    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "variables": {
         "policyName": "allowed-locations-for-resource-groups",
@@ -65,7 +65,7 @@
         },
         {
             "type": "Microsoft.Authorization/policyAssignments",
-            "name": "location-lock",
+            "name": "allowed-locations-for-resource-groups",
             "apiVersion": "2018-03-01",
             "dependsOn": [
                 "allowed-locations-for-resource-groups"
