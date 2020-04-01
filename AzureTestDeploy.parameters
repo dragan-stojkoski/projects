@@ -1,0 +1,17 @@
+{
+    "parameters": {
+        "RGAllowedLocations": {
+            "type": "array",
+            "strongType": "location",
+            "defaultValue": [ "australiaeast" ],
+            "allowedValues": [
+              "australiaeast",
+              "australiasoutheast",
+              "southeastasia",
+              "eastasia",
+              "northeurope"
+            ]
+          }
+}
+}
+ 
