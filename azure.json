@@ -28,18 +28,18 @@
                             "description": "The list of locations that can be specified when deploying resources.",
                             "strongType": "location",
                             "defaultValue":[
-          "australiaeast",
-          "australiasoutheast",
-          "southeastasia",
-          "eastasia",
-          "northeurope"
+          "Australia East",
+          "Australia Southeast",
+          "Southeast Asia",
+          "East Asia",
+          "North Europe"
         ],
                             "allowedValues": [
-          "australiaeast",
-          "australiasoutheast",
-          "southeastasia",
-          "eastasia",
-          "northeurope"
+          "Australia East",
+          "Australia Southeast",
+          "Southeast Asia",
+          "East Asia",
+          "North Europe"
         ]
                         }
                     }
