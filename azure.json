@@ -1,47 +1,56 @@
+  
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
-    "variables": {},
+
+    "variables": {
+        "policyName": "enforce-naming-for-resource-groups-pd",
+        "policyDisplayName": "Enforce naming convention for resource groups",
+        "policyDescription": "This policy enforces a naming pattern for resource groups."
+    },
+
     "resources": [
         {
             "type": "Microsoft.Authorization/policyDefinitions",
-            "name": "locationpolicy",
-            "apiVersion": "2019-06-01",
+            "name": "[variables('policyName')]",
+            "apiVersion": "2019-09-01",
             "properties": {
+                "displayName": "[variables('policyDisplayName')]",
                 "policyType": "Custom",
-                 "parameters": {
-        "RGAllowedLocations": {
-            "type": "array",
-            "strongType": "location",
-            "defaultValue": [ "australiaeast" ],
-            "allowedValues": [
-              "australiaeast",
-              "australiasoutheast",
-              "southeastasia",
-              "eastasia",
-              "northeurope"
-            ]
-          }
-},
-    "policyRule": {
-      "if": {
-        "allOf": [
+                "description": "[variables('policyDescription')]",
+                "metadata": {
+                    "category": "Naming convention"
+                },
+                "mode": "All",
+               
+                "policyRule": {
+                    "if": {
+                        "allOf": [
           {
             "field": "type",
             "equals": "Microsoft.Resources/subscriptions/resourceGroups"
           },
           {
-            "field": "location",
-            "notIn": "[[parameters('RGAllowedLocations')]"
+            "not": {
+              "field": "Microsoft.Storage/storageAccounts/sku.name",
+              "in": [
+                "australiaeast",
+                "australiasoutheast",
+                "southeastasia",
+                "eastasia",
+                "northeurope"
+                    ]
+                  },
+                     "then": {
+                      "effect": "Audit"
+                             }
           }
-        ]
-      },
-      "then": {
-        "effect": "deny"
-      }
-    }
-            }
+                                ]
+                          }
+                          }
+                         }
         }
+            
     ]
+    
 }
