@@ -68,11 +68,11 @@
             "name": "location-lock",
             "apiVersion": "2018-03-01",
             "dependsOn": [
-                "Allowed Locations for Resource Groups"
+                "allowed-locations-for-resource-groups"
             ],
             "properties": {
                 "scope": "[subscription().id]",
-                "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions', 'Allowed Locations for Resource Groups')]"
+                "policyDefinitionId": "[resourceId('Microsoft.Authorization/policyDefinitions', 'allowed-locations-for-resource-groups')]"
             }
         }
     ]
