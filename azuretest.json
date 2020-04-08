@@ -1,15 +1,12 @@
 {
   "properties": {
-    "displayName": "tst",
+    "displayName": "Enforce HTTPS Use on Web Apps",
     "policyType": "Custom",
     "mode": "Indexed",
+    "description": "Use of HTTPS ensures server/service authentication and protects data in transit from network layer eavesdropping attacks.",
     "metadata": {
       "version": "1.0.1",
-      "category": "App Service",
-      "createdBy": "1b9ac6ba-c394-4b16-95b6-7a9dcd8b5fee",
-      "createdOn": "2020-04-08T17:24:52.8440611Z",
-      "updatedBy": null,
-      "updatedOn": null
+      "category": "App Service"
     },
     "parameters": {
       "effect": {
@@ -19,10 +16,10 @@
           "description": "Enable or disable the execution of the policy"
         },
         "allowedValues": [
-          "AuditIfNotExists",
+          "Audit",
           "Disabled"
         ],
-        "defaultValue": "AuditIfNotExists"
+        "defaultValue": "Audit"
       }
     },
     "policyRule": {
@@ -35,23 +32,19 @@
           {
             "field": "kind",
             "like": "app*"
+          },
+          {
+            "field": "Microsoft.Web/sites/httpsOnly",
+            "equals": "false"
           }
         ]
       },
       "then": {
-        "effect": "[parameters('effect')]",
-        "details": {
-          "type": "Microsoft.Web/sites/config",
-          "name": "web",
-          "existenceCondition": {
-            "field": "Microsoft.Web/sites/config/siteAuthEnabled",
-            "equals": "true"
-          }
-        }
+        "effect": "[parameters('effect')]"
       }
     }
   },
-  "id": "/subscriptions/226eb202-8860-4bd3-baf6-168e3a48bef7/providers/Microsoft.Authorization/policyDefinitions/3bf57ccd-87c9-48b3-9089-372b3ecc675d",
+  "id": "/providers/Microsoft.Authorization/policyDefinitions/a4af4a39-4135-47fb-b175-47fbdf85311d",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "name": "3bf57ccd-87c9-48b3-9089-372b3ecc675d"
+  "name": "a4af4a39-4135-47fb-b175-47fbdf85311d"
 }
