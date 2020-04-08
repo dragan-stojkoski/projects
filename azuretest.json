@@ -1,12 +1,15 @@
 {
   "properties": {
-    "displayName": "Authentication should be enabled on your web app",
+    "displayName": "tst",
     "policyType": "Custom",
     "mode": "Indexed",
-    "description": "Authentication that can prevent anonymous HTTP requests from reaching the web app, or authenticate those that have tokens before they reach the web app",
     "metadata": {
       "version": "1.0.1",
-      "category": "App Service"
+      "category": "App Service",
+      "createdBy": "1b9ac6ba-c394-4b16-95b6-7a9dcd8b5fee",
+      "createdOn": "2020-04-08T17:24:52.8440611Z",
+      "updatedBy": null,
+      "updatedOn": null
     },
     "parameters": {
       "effect": {
@@ -48,7 +51,7 @@
       }
     }
   },
-  "id": "/providers/Microsoft.Authorization/policyDefinitions/e1d68f07-fc7d-48cb-bad2-de3156f2c75d",
+  "id": "/subscriptions/226eb202-8860-4bd3-baf6-168e3a48bef7/providers/Microsoft.Authorization/policyDefinitions/3bf57ccd-87c9-48b3-9089-372b3ecc675d",
   "type": "Microsoft.Authorization/policyDefinitions",
-  "name": "e1d68f07-fc7d-48cb-bad2-de3156f2c75d"
-} 
+  "name": "3bf57ccd-87c9-48b3-9089-372b3ecc675d"
+}
