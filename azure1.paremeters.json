@@ -1,6 +1,10 @@
+
 {
   "aadObjectId": {
     "type": "String",
-    "value": "45a172a5-dde2-46aa-94b8-b6ac5485bd3d"
+    "metadata": {
+      "displayName": "AAD Object ID",
+      "description": "The objectId of the AAD user, group, or service principal to check."
+    }
   }
 }
